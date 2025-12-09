@@ -1,0 +1,44 @@
+<div class="flex justify-between items-center">
+  <div>
+    <h1 class="text-2xl font-bold">Listado de productos</h1>
+    <h3>
+      Total de productos
+      <span class="text-accent">{{ productsResource.value()?.count }}</span>
+    </h3>
+  </div>
+  <button class="btn btn-accent" routerLink="/">Ir a la tienda</button>
+</div>
+
+<div class="divider"></div>
+
+<div class="flex justify-between my-4">
+  <div>
+    <pagination
+      [pages]="productsResource.value()?.pages ?? 0"
+      [currentPage]="paginationService.currentPage()"
+    />
+
+    <select
+      class="select w-24 border-none bg-slate-900 ml-2"
+      (change)="onPerPageChange(+selectPerPage.value)"
+      #selectPerPage
+    >
+      <option value="10">10</option>
+      <option value="20">20</option>
+      <option value="50">50</option>
+      <option value="100">100</option>
+    </select>
+  </div>
+
+  <input
+    type="text"
+    placeholder="Buscar producto"
+    class="bg-slate-900 rounded-xl p-2 text-center w-64"
+    (input)="searchTerm.set(searchInput.value)"
+    #searchInput
+  />
+</div>
+
+@if (productsResource.value()?.products) {
+<product-table [products]="productsResource.value()!.products" [searchTerm]="searchTerm()" />
+}

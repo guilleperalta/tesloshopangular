@@ -1,0 +1,30 @@
+@if(productResource.error()) {
+<span class="text-2xl">No se encontro el producto</span>
+}
+
+@if (productResource.isLoading()) {
+<div class="flex justify-center items-center h-screen">
+  <span class="loading loading-spinner loading-lg"></span>
+</div>
+}
+
+@if (productResource.hasValue()) {
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 fadeIn">
+  <product-carousel [images]="productResource.value().images" />
+
+  <div style="display: flex; flex-basis: 1; flex-direction: column;">
+    <h2 class="montserrat text-2xl font-bold">{{ productResource.value().title }}</h2>
+
+    <div class="divider"></div>
+
+    <p>
+      {{ productResource.value().description }}
+    </p>
+
+    <div class="divider"></div>
+
+    <p>Precio: {{ productResource.value().price }}</p>
+    <p>Género: {{ productResource.value().gender }}</p>
+  </div>
+</div>
+}

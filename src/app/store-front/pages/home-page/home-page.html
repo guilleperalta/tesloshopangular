@@ -1,0 +1,18 @@
+<h1 class="text-3xl font-bold montserrat">Todos los productos</h1>
+<h2 class="text-xl mb-4">Para todos los gustos</h2>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-2 gap-3 fadeIn">
+  @for (product of productsResource.value()?.products ;track $index) {
+  <product-card [product]="product" />
+  }
+  <!-- @empty {
+  <p>No hay productos</p>
+  } -->
+</div>
+
+<div class="flex justify-center items-center mt-4 mb-10">
+  <pagination
+    [pages]="productsResource.value()?.pages ?? 0"
+    [currentPage]="paginationService.currentPage()"
+  />
+</div>
