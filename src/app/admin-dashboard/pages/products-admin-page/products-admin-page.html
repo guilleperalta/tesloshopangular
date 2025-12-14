@@ -6,7 +6,7 @@
       <span class="text-accent">{{ productsResource.value()?.count }}</span>
     </h3>
   </div>
-  <button class="btn btn-accent" routerLink="/">Ir a la tienda</button>
+  <button class="btn btn-outline" routerLink="/">Ir a la tienda</button>
 </div>
 
 <div class="divider"></div>
@@ -30,13 +30,16 @@
     </select>
   </div>
 
-  <input
-    type="text"
-    placeholder="Buscar producto"
-    class="bg-slate-900 rounded-xl p-2 text-center w-64"
-    (input)="searchTerm.set(searchInput.value)"
-    #searchInput
-  />
+  <div class="flex justify-center items-center gap-4">
+    <button class="btn btn-accent" routerLink="/admin/product/new">Agregar Producto</button>
+    <input
+      type="text"
+      placeholder="Buscar producto"
+      class="bg-slate-900 rounded-xl p-2 text-center w-40"
+      (input)="searchTerm.set(searchInput.value)"
+      #searchInput
+    />
+  </div>
 </div>
 
 @if (productsResource.value()?.products) {
